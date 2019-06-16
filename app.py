@@ -1,14 +1,14 @@
 from flask import Flask
-import logging
 from rest import requests
+from logger import default_logger
+
 
 app = Flask(__name__)
 
 @app.route('/<arg>')
 def home(arg):
     user = requests.getQueryParam('user')
-    #setupLogger()
-    logger = logging.getLogger()
+    logger =  default_logger.simpleLogger()
     logger.warn("Request on " + arg)
     return user
 
@@ -17,11 +17,4 @@ def home(arg):
 def index():
     return "Hello, World!"
 
-
-def setupLogger():
-    logging.basicConfig(
-        level=logging.WARN,
-        format="%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s",
-        handlers=[
-            logging.StreamHandler()
-        ])
+# http://localhost:5000/ciao?user=asasf

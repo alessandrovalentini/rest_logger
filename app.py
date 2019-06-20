@@ -3,7 +3,7 @@ from rest import requests
 from logger import default_logger
 from rabbitmq import send
 from rabbitmq import receive
-from rabbitmq import rabbitMqClient
+from rabbitmq.client import RabbitMqClient
 import threading
 
 app = Flask(__name__)
@@ -11,6 +11,8 @@ app = Flask(__name__)
 
 from threading import Thread
 from time import sleep
+
+rabbitMqClient = RabbitMqClient("localhost", "hello", "hello")
 
 @app.route('/')
 def index():

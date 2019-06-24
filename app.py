@@ -1,29 +1,26 @@
 from flask import Flask
 from rest import requests
 from logger import default_logger
-from rabbitmq import send
-from rabbitmq import receive
+from logger import rabbit_logger
 from rabbitmq.client import RabbitMqClient
 import threading
 
+
 app = Flask(__name__)
-
-
-from threading import Thread
-from time import sleep
 
 rabbitMqClient = RabbitMqClient("localhost", "hello", "hello")
 
 @app.route('/')
 def index():
+    rabbit_logger.print_log
     return "Hello, World!"
 
-#@app.route('/<arg>')
-#def home(arg):
-#    user = requests.getQueryParam('user')
-#    logger =  default_logger.simpleLogger()
-#    logger.warn("Request on " + arg)
-#    return user
+@app.route('/<arg>')
+def home(arg):
+    user = requests.getQueryParam('user')
+    logger = default_logger.simpleLogger()
+    logger.warn("Request on " + arg)
+    return user
 
 
 @app.route('/send')

@@ -8,4 +8,11 @@ This server is intended to be used in conjunction with my ELK stack project.
 To run a stateless rabbitMQ server use the following command
 ``` bash
 docker run --rm --name rabbitmq -d -p 5672:5672 -p 15672:15672 rabbitmq:management
-``
+```
+
+## Run server
+To run server:
+```
+source venv/bin/activate
+python2.7 app.py
+```

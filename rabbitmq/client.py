@@ -26,12 +26,13 @@ class RabbitMqClient:
         connection = self.build()
         channel = connection.channel()
 
+        print(" [*] Starting consumer receive")
+
         def callback(ch, method, properties, body):
             print(" [x] Received %r" % body)
             return body
 
-        channel.basic_consume(
-            queue=self.queue_name, on_message_callback=callback, auto_ack=True)
+        channel.basic_consume(consumer_callback=callback, queue=self.queue_name)
 
         print(' [*] Waiting for messages. To exit press CTRL+C')
         channel.start_consuming()

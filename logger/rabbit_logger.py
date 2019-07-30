@@ -6,9 +6,9 @@ from python_logging_rabbitmq import RabbitMQHandler
 
 def print_log():
     logger = logging.getLogger('myapp')
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.WARNING)
 
     rabbit = RabbitMQHandler(host='localhost', port=5672)
     logger.addHandler(rabbit)
 
-    logger.debug('test debug')
+    logger.warning('test debug')

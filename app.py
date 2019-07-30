@@ -28,16 +28,12 @@ def writeToQueue():
     rabbitMqClient.send()
     rabbitMqClient.send()
     rabbitMqClient.send()
-    #receive.receive()
     return "message sent!"
 
-#@app.route('/receive')
-#def readFromQueue():
-#    rthreading.Thread(target=rabbitMqClient.receive).start()
-#    return "start receiving messages from queue..."
-
 if __name__ == "__main__":
+    print("starting new thread")
     threading.Thread(target=app.run).start()
     threading.Thread(target=rabbitMqClient.receive).start()
 
-# http://localhost:5000/ciao?user=asasf
+    # http://localhost:5000/ciao?user=asasf
+    # http://localhost:5000/send
